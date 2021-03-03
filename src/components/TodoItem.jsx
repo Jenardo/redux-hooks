@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { deleteTodo, updateTodo } from '../redux/actions';
+
+const Button = styled.button`
+  background: ${(props) => (props.active ? 'red' : '')};
+`;
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
@@ -28,7 +33,7 @@ function TodoItem({ todo }) {
             todo.name
           )}
         </div>
-        <button
+        <Button
           onClick={() => {
             if (editable) {
               dispatch(
@@ -44,7 +49,7 @@ function TodoItem({ todo }) {
           className="col-2 btn btn-primary mx-1"
         >
           Edit
-        </button>
+        </Button>
         <button
           onClick={() => dispatch(deleteTodo(todo.id))}
           className="col-2 btn btn-danger mx-1"
