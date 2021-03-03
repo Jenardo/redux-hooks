@@ -46,16 +46,24 @@ const Name = styled(ID)`
   font-weight: 500;
 `;
 
+const Description = styled(Name)`
+  text-transform: none;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 400;
+`;
+
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
   const [editable, setEditable] = useState(false);
   const [editName, setName] = useState('');
+  const [editDesc, setDesc] = useState('');
 
   return (
     <div className="container mt-5">
       <div className="row justify-content-around align-items-center m-1">
         <ID className="col-1">#{todo.id.length > 1 ? todo.id[2] : todo.id}</ID>
-        <Name className="col-5">
+        <Name className="col-3">
           {editable ? (
             <input
               type="text"
@@ -70,6 +78,21 @@ function TodoItem({ todo }) {
             todo.name
           )}
         </Name>
+        <Description className="col-3">
+          {editable ? (
+            <input
+              type="text"
+              className="form-control"
+              value={editDesc}
+              placeholder={todo.description}
+              onChange={(e) => {
+                setDesc(e.target.value);
+              }}
+            ></input>
+          ) : (
+            todo.description
+          )}
+        </Description>
         <Button
           onClick={() => {
             if (editable) {
@@ -77,9 +100,11 @@ function TodoItem({ todo }) {
                 updateTodo({
                   ...todo,
                   name: editName,
+                  description: editDesc,
                 })
               );
               setName(todo.name);
+              setDesc(todo.description);
             }
             setEditable(!editable);
           }}

@@ -31,6 +31,7 @@ export const reducer = (state = todo, action) => {
           } else {
             td.name = action.payload.name;
           }
+          td.description = action.payload.description;
         }
       });
       break;
