@@ -5,6 +5,19 @@ import { deleteTodo, updateTodo } from '../redux/actions';
 
 const Button = styled.button`
   background: ${(props) => (props.active ? 'red' : '')};
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
 `;
 
 function TodoItem({ todo }) {
@@ -46,7 +59,7 @@ function TodoItem({ todo }) {
             }
             setEditable(!editable);
           }}
-          className="col-2 btn btn-primary mx-1"
+          className="col-2"
         >
           Edit
         </Button>
