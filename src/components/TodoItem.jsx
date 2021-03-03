@@ -18,6 +18,32 @@ const Button = styled.button`
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
+
+  &:hover {
+    background-color: blue;
+    box-shadow: 1px rgba(0, 0, 0, 0.35);
+    transition: font-weight 0.15s ease-in-out,
+      background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+  }
+
+  &:focus {
+    box-shadow: 1px rgba(0, 0, 0, 0.5);
+    background-color: blue;
+  }
+`;
+
+const ID = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px;
+`;
+
+const Name = styled(ID)`
+  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
 `;
 
 function TodoItem({ todo }) {
@@ -28,10 +54,8 @@ function TodoItem({ todo }) {
   return (
     <div className="container mt-5">
       <div className="row justify-content-around align-items-center m-1">
-        <div className="col-1">
-          #{todo.id.length > 1 ? todo.id[2] : todo.id}
-        </div>
-        <div className="col-5">
+        <ID className="col-1">#{todo.id.length > 1 ? todo.id[2] : todo.id}</ID>
+        <Name className="col-5">
           {editable ? (
             <input
               type="text"
@@ -45,7 +69,7 @@ function TodoItem({ todo }) {
           ) : (
             todo.name
           )}
-        </div>
+        </Name>
         <Button
           onClick={() => {
             if (editable) {

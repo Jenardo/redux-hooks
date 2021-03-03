@@ -26,7 +26,11 @@ export const reducer = (state = todo, action) => {
       newTodos = [...state];
       [...newTodos].forEach((td) => {
         if (td.id === action.payload.id) {
-          td.name = action.payload.name;
+          if (action.payload.name === undefined || action.payload.name === '') {
+            alert('Nome vuoto');
+          } else {
+            td.name = action.payload.name;
+          }
         }
       });
       break;
