@@ -9,7 +9,8 @@ export const reducer = (state = todo, action) => {
   switch (action.type) {
     case ADD_TODO:
       if (action.payload.name === undefined || action.payload.name === '') {
-        alert('Nome vuoto');
+        // alert('Nome vuoto');
+        console.log('Nome vuoto');
       } else {
         newTodos = [...state];
         newTodos.push(action.payload);
